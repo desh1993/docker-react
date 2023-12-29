@@ -1,29 +1,8 @@
 version: '3'
 services:
-  react-app:
+  web:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     ports:
-      - "8080:3000"
-    volumes:
-      - /app/node_modules
-      - .:/app
-    environment:
-      - WDS_SOCKET_PORT=8080 # The mapped port on your host machine , also hot reload
-  react-test:
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
-    volumes:
-      - /app/node_modules
-      - .:/app
-    environment:
-      - WDS_SOCKET_PORT=8080 # The mapped port on your host machine , also hot reload
-    command: ["npm" , "run" , "test"]
-  react-app-prod:
-    build:
-      context: .
-      dockerfile: Dockerfile.prod  # Use the production Dockerfile for the production environment
-    ports:
-      - "8089:80"
+      - '8089:80'
