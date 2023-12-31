@@ -1,22 +1,10 @@
-# Use the official Node.js 16 image as the builder
-FROM node:16-alpine as builder
+FROM node:16-alpine
 
-# Set the working directory in the builder image
-WORKDIR /app
+WORKDIR '/app'
 
-# Copy the package.json and install dependencies
 COPY package.json .
 RUN npm install
 
-# Copy the application code and build
 COPY . .
-RUN npm run build
 
-# Use the official Nginx image as the final image
-FROM nginx
-
-# Expose port 80
-EXPOSE 80
-
-# Copy the built files from the builder image to the Nginx image
-COPY --from=builder /app/build /usr/share/nginx/html
+CMD ["npm", "run", "start"]
