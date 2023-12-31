@@ -6,10 +6,7 @@ WORKDIR '/app'
 
 # Copy the package.json and install dependencies
 COPY package.json .
-RUN apk update && apk add --no-cache curl
-RUN curl -sL https://deb.nodesource.com/setup_16.x | sh -
-RUN apk update && apk add --no-cache nodejs npm
-RUN npm install
+RUN npm run install
 
 # Copy the application code and build
 COPY . .
